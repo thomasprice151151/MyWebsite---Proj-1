@@ -16,4 +16,24 @@ install.packages("usethis")
 
 ```{r}
 usethis::use_git()
+
+          
+
+
+```
+
+```{r}
+
+```
+
+```{r}
+usethis::use_git_config(init.defaultBranch = "main")
+```
+
+```{r}
+usethis::use_github()
+```
+
+```{r}
+
 ```
