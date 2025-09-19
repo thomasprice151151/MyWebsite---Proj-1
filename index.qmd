@@ -11,10 +11,6 @@ To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 ```
 
 ```{r}
-install.packages("usethis")
-```
-
-```{r}
 usethis::use_git()
 
           
@@ -28,10 +24,6 @@ usethis::use_git()
 
 ```{r}
 usethis::use_git_config(init.defaultBranch = "main")
-```
-
-```{r}
-usethis::use_github()
 ```
 
 ```{r}
