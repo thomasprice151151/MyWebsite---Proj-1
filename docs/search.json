@@ -9,8 +9,8 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "proj1",
+    "title": "Thomas Price",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 2\n\n[1] 3\n\n\n\nusethis::use_git()\n\n✔ Setting active project to \"/Users/tommyprice/R stats/mywebsite/proj1\".\n\n\n\nusethis::use_git_config(init.defaultBranch = \"main\")"
+    "text": "Hi! My name is Thomas Price and I am a current Senior at Pitzer College. At Pitzer, I study International Political Economy and Data Science. When I am not studying, you can find me playing tennis on our club tennis team, traveling around the country with the Claremont Debate Team or winning intramural Pickle ball Tournaments!\n\nBeing From San Francisco, I am a huge Giants fan, so if you support any LA team, kindly leave this website!\n\nusethis::use_git()\n\n✔ Setting active project to \"/Users/tommyprice/R stats/mywebsite/proj1\".\n\n\n\nusethis::use_git_config(init.defaultBranch = \"main\")"
   }
 ]

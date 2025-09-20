@@ -1,14 +1,10 @@
 ---
-title: "proj1"
+title: "Thomas Price"
 ---
 
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
-
-```{r}
-1 + 2
-```
+Hi! My name is Thomas Price and I am a current Senior at Pitzer College. At Pitzer, I study International Political Economy and Data Science. When I am not studying, you can find me playing tennis on our club tennis team, traveling around the country with the Claremont Debate Team or winning intramural Pickle ball Tournaments!\
+\
+Being From San Francisco, I am a huge Giants fan, so if you support any LA team, kindly leave this website!
 
 ```{r}
 usethis::use_git()
