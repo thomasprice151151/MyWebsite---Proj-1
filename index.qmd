@@ -1,25 +1,45 @@
 ---
 title: "Thomas Price"
+
+website:
+  title: "Thomas Price"
+  sidebar: 
+    left:
+      - href: index.qmd
+        text: Home 
+      - href: about.qmd
+        text: About
+      - href: TidyTuesday.qmd
+        text: Tidy Tuesday
+
+about:
+  template: jolla
+  image: images/IMG_8464.jpeg
+  image-shape: round
+  image-width: 17em
+  links:
+    - text: LinkedIn
+      href: https://www.linkedin.com/in/thomas-price-tprice/
+    - text: GitHub
+      href: https://github.com/thomasprice151151
+    - text: Email
+      href: mailto:tprice@students.pitzer.edu
+
+format:
+  html:
+    theme: mint
+    toc: true
 ---
 
 Hi! My name is Thomas Price and I am a current Senior at Pitzer College. At Pitzer, I study International Political Economy and Data Science. When I am not studying, you can find me playing tennis on our club tennis team, traveling around the country with the Claremont Debate Team or winning intramural Pickle ball Tournaments!\
 \
-Being From San Francisco, I am a huge Giants fan, so if you support any LA team, kindly leave this website!
+Being From San Francisco, I am a huge Giants fan, so if you support any LA team, kindly leave this website
 
-```{r}
-usethis::use_git()
-
-          
-
-
+```{}
 ```
 
 ```{r}
 
-```
-
-```{r}
-usethis::use_git_config(init.defaultBranch = "main")
 ```
 
 ```{r}

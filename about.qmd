@@ -1,9 +1,25 @@
 ---
 title: "About"
+page-layout: full 
+---
+## Bio
+Hi, I’m Thomas Price, a junior at Pitzer College majoring in International Political Economy and minoring in Data Science. I recently studied abroad in Spain, and the photo above is from a trip my friends and I took to Monte Carlo! The purpose of this website is to showcase how one can wrangle and visulualize data, feel free to find those examples in the drop down menu on your left! 
+
+## Experience
+- Summer Analyst at AlphaSights (San Francisco)  
+- Strategy Intern at BCIU (Washington,DC)
+- Legislative Intern at the US House of Repersentitives (Washington, DC)
+
+## Projects
+- Senior thesis: *Marshall Plan vs. Belt & Road Initiative*  
+- Data wrangling/visualization with **R + ggplot**  
+
+## Contact
+Feel free to connect with me:
+- [LinkedIn](https://www.linkedin.com/in/thomas-price-tprice/)  
+- [GitHub](https://github.com/thomasprice151151)  
+- [Email](mailto:tprice@students.pitzer.edu)
 ---
 
-About this site
-
-```{r}
-1 + 1
+```{}
 ```

@@ -1,0 +1,11 @@
+---
+title: "Data Visualization"
+page-layout: full
+about:
+  template: jolla
+  image: images/DV.jpeg
+  image-shape: round
+  image-width: 17em
+
+---
+

@@ -1,16 +1,44 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Thomas Price",
     "section": "",
-    "text": "Hi! My name is Thomas Price and I am a current Senior at Pitzer College. At Pitzer, I study International Political Economy and Data Science. When I am not studying, you can find me playing tennis on our club tennis team, traveling around the country with the Claremont Debate Team or winning intramural Pickle ball Tournaments!\n\nBeing From San Francisco, I am a huge Giants fan, so if you support any LA team, kindly leave this website!\n\nusethis::use_git()\n\n✔ Setting active project to \"/Users/tommyprice/R stats/mywebsite/proj1\".\n\n\n\nusethis::use_git_config(init.defaultBranch = \"main\")"
+    "text": "Hi! My name is Thomas Price and I am a current Senior at Pitzer College. At Pitzer, I study International Political Economy and Data Science. When I am not studying, you can find me playing tennis on our club tennis team, traveling around the country with the Claremont Debate Team or winning intramural Pickle ball Tournaments!\n\nBeing From San Francisco, I am a huge Giants fan, so if you support any LA team, kindly leave this website"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Hi, I’m Thomas Price, a junior at Pitzer College majoring in International Political Economy and minoring in Data Science. I recently studied abroad in Spain, and the photo above is from a trip my friends and I took to Monte Carlo! The purpose of this website is to showcase how one can wrangle and visulualize data, feel free to find those examples in the drop down menu on your left!"
+  },
+  {
+    "objectID": "about.html#bio",
+    "href": "about.html#bio",
+    "title": "About",
+    "section": "",
+    "text": "Hi, I’m Thomas Price, a junior at Pitzer College majoring in International Political Economy and minoring in Data Science. I recently studied abroad in Spain, and the photo above is from a trip my friends and I took to Monte Carlo! The purpose of this website is to showcase how one can wrangle and visulualize data, feel free to find those examples in the drop down menu on your left!"
+  },
+  {
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "About",
+    "section": "Experience",
+    "text": "Experience\n\nSummer Analyst at AlphaSights (San Francisco)\n\nStrategy Intern at BCIU (Washington,DC)\nLegislative Intern at the US House of Repersentitives (Washington, DC)"
+  },
+  {
+    "objectID": "about.html#projects",
+    "href": "about.html#projects",
+    "title": "About",
+    "section": "Projects",
+    "text": "Projects\n\nSenior thesis: Marshall Plan vs. Belt & Road Initiative\n\nData wrangling/visualization with R + ggplot"
+  },
+  {
+    "objectID": "about.html#contact",
+    "href": "about.html#contact",
+    "title": "About",
+    "section": "Contact",
+    "text": "Contact\nFeel free to connect with me: - LinkedIn\n- GitHub\n- Email"
   }
 ]
