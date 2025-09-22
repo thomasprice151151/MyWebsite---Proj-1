@@ -1,0 +1,50 @@
+---
+title: "Billboard Hot 100 Number Ones"
+subtitle: "Examining the top songs in the world between 1958 and 2025"
+description: |
+ The chart showcases the top 10 artists who have had songs in the top 100 songs in the world. The chart shows the total number of songs those artists had in the Billboard top 100. 
+ 
+ Original Auther: Jen Richmond (R-Ladies Sydney)
+format: html
+about:
+ template: jolla
+ image: images/bb.jpeg 
+ image-shape: rounded
+ image-width: 17em
+---
+[View Original Data Set Here](https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-08-26)
+
+```{r}
+#| message: false
+#| warning: false
+
+library(tidyverse)
+
+billboard <- readr::read_csv(
+  "https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-08-26/billboard.csv"
+)
+
+artist_counts <- billboard |>
+  group_by(artist) |>
+  summarise(n = n()) |>
+  arrange(desc(n))
+
+top10_artists <- head(artist_counts, 10)
+
+
+ggplot(top10_artists, aes(x = reorder(artist, n), y = n)) +
+  geom_col(fill = "steelblue") +
+  geom_text(aes(label = n), hjust = 1.2, color = "white", size = 4) +
+  coord_flip() +   # flips so artists are readable
+  labs(
+    title = "Top 10 Artists by Number of Hot 100 Songs",
+    x = "Artist",
+    y = "Number of Songs"
+  ) +
+  theme_minimal()
+
+```
+
+
+[image source](https://www.cnbc.com/2014/08/25/survey-us-gas-prices-down-4-cents-per-gallon.html)
+

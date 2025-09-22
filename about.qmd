@@ -1,6 +1,18 @@
 ---
 title: "About"
 page-layout: full 
+about:
+  template: jolla
+  image: images/Img_123.jpeg
+  image-shape: round
+  image-width: 17em
+  links:
+    - text: LinkedIn
+      href: https://www.linkedin.com/in/thomas-price-tprice/
+    - text: GitHub
+      href: https://github.com/thomasprice151151
+    - text: Email
+      href: mailto:tprice@students.pitzer.edu
 ---
 ## Bio
 Hi, I’m Thomas Price, a junior at Pitzer College majoring in International Political Economy and minoring in Data Science. I recently studied abroad in Spain, and the photo above is from a trip my friends and I took to Monte Carlo! The purpose of this website is to showcase how one can wrangle and visulualize data, feel free to find those examples in the drop down menu on your left! 

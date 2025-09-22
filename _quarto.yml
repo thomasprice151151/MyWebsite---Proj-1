@@ -14,21 +14,8 @@ website:
         menu:
           - href: tidygas.qmd
             text: US Gas Prices
-          - href: tidy2.qmd
-            text: TidyTuesday 2
-
-about:
-  template: jolla
-  image: images/Img_123.jpeg
-  image-shape: round
-  image-width: 17em
-  links:
-    - text: LinkedIn
-      href: https://www.linkedin.com/in/thomas-price-tprice/
-    - text: GitHub
-      href: https://github.com/thomasprice151151
-    - text: Email
-      href: mailto:tprice@students.pitzer.edu
+          - href: billboard_t100.qmd
+            text: Billboard Top 100 
 
 format:
   html:

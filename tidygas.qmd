@@ -1,22 +1,29 @@
 ---
 title: "US Gas Prices"
 subtitle: "Exploring US Gas Prices Over Time"
+description: |
+  Viewing US Gas Prices on a weekly basis over the last 35 years. Original Author: Jon Harmon, Data Science Learning Community. 
 format: html
+about:
+ template: jolla
+ image: images/Gas.jpeg 
+ image-shape: rounded
+ image-width: 17em
 ---
 
+[View the original TidyTuesday dataset](https://github.com/rfordatascience/tidytuesday/blob/main/data/2025/2025-07-01/readme.md)
+
 ```{r}
+#| message: false
+#| warning: false
 
-
-# Load libraries (not install)
 library(tidyverse)
-library(tidytuesdayR)
 
-# Load dataset
 weekly_gas_prices <- readr::read_csv(
-  "https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-07-01/weekly_gas_prices.csv"
+  "https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-07-01/weekly_gas_prices.csv",
+  show_col_types = FALSE
 )
 
-# Plot
 weekly_gas_prices |>
   ggplot(aes(x = date, y = price)) +
   geom_line(color = "steelblue") +
@@ -26,14 +33,6 @@ weekly_gas_prices |>
     y = "Price (USD per gallon)"
   ) +
   theme_minimal()
-
-
 ```
 
-
-
-
-
-
-```
-
+[image source](https://www.cnbc.com/2014/08/25/survey-us-gas-prices-down-4-cents-per-gallon.html)

@@ -1,6 +1,0 @@
----
-title: "US Gas Prices"
-subtitle: "Exploring US Gas Prices Over Time"
-format: html
----
-
