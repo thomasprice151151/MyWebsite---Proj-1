@@ -1,0 +1,39 @@
+---
+title: "US Gas Prices"
+subtitle: "Exploring US Gas Prices Over Time"
+format: html
+---
+
+```{r}
+
+
+# Load libraries (not install)
+library(tidyverse)
+library(tidytuesdayR)
+
+# Load dataset
+weekly_gas_prices <- readr::read_csv(
+  "https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-07-01/weekly_gas_prices.csv"
+)
+
+# Plot
+weekly_gas_prices |>
+  ggplot(aes(x = date, y = price)) +
+  geom_line(color = "steelblue") +
+  labs(
+    title = "Weekly U.S. Gas Prices (1990–2025)",
+    x = "Date",
+    y = "Price (USD per gallon)"
+  ) +
+  theme_minimal()
+
+
+```
+
+
+
+
+
+
+```
+
