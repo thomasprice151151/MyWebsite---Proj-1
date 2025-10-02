@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Viewing US Gas Prices on a weekly basis over the last 35 years. Original Author: Jon Harmon, Data Science Learning Community.">
+<meta name="description" content="Fill in Later">
 
-<title>US Gas Prices – Thomas Price</title>
+<title>Analysis of Obama’s Tweets – Thomas Price</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -162,48 +162,155 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     
 <!-- main -->
 <div class="quarto-about-jolla">
-  <img src="images/Gas.jpeg" class="about-image
-  rounded " style="width: 17em;">
+  <img src="images/Obama.jpeg" class="about-image
+  rectangle " style="width: 17em;">
  <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">US Gas Prices</h1>
-<p class="subtitle lead">Exploring US Gas Prices Over Time</p>
+<h1 class="title">Analysis of Obama’s Tweets</h1>
+<p class="subtitle lead">fill in later</p>
 </div>
 <div>
   <div class="description">
-    <p>Viewing US Gas Prices on a weekly basis over the last 35 years. Original Author: Jon Harmon, Data Science Learning Community.</p>
+    <p>Fill in Later</p>
   </div>
 </div>
 <div class="quarto-title-meta">
   </div>
 </header><main class="content" id="quarto-document-content">
-<p><a href="https://github.com/rfordatascience/tidytuesday/blob/main/data/2025/2025-07-01/readme.md">View the original TidyTuesday dataset</a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>weekly_gas_prices <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-07-01/weekly_gas_prices.csv"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>obama <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Obama_Tweets/tweets.csv"</span>)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>weekly_gas_prices <span class="sc">|&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Weekly U.S. Gas Prices (1990–2025)"</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Date"</span>,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Price (USD per gallon)"</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(obama)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 10
+  tweet_id in_reply_to_status_id in_reply_to_user_id timestamp      source text 
+     &lt;dbl&gt;                 &lt;dbl&gt;               &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;
+1  7.97e17                    NA                  NA 2016-11-11 17… "&lt;a h… Toda…
+2  7.96e17                    NA                  NA 2016-11-08 15… "&lt;a h… Toda…
+3  7.94e17                    NA                  NA 2016-11-03 23… "&lt;a h… It's…
+4  7.94e17                    NA                  NA 2016-11-03 06… "&lt;a h… It h…
+5  7.90e17                    NA                  NA 2016-10-23 17… "&lt;a h… I'll…
+6  7.90e17                    NA                  NA 2016-10-21 22… "&lt;a h… Chec…
+# ℹ 4 more variables: retweeted_status_id &lt;dbl&gt;,
+#   retweeted_status_user_id &lt;dbl&gt;, retweeted_status_timestamp &lt;chr&gt;,
+#   expanded_urls &lt;chr&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cleaning the data </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>tweets <span class="ot">&lt;-</span> obama <span class="sc">|&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(text))               </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>tweets_clean <span class="ot">&lt;-</span> tweets <span class="sc">|&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">text_lower =</span> <span class="fu">str_to_lower</span>(text),                        </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">text_noline =</span> <span class="fu">str_replace_all</span>(text_lower, <span class="st">"[</span><span class="sc">\r\n</span><span class="st">]"</span>, <span class="st">" "</span>),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tweets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 10
+  tweet_id in_reply_to_status_id in_reply_to_user_id timestamp      source text 
+     &lt;dbl&gt;                 &lt;dbl&gt;               &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;
+1  7.97e17                    NA                  NA 2016-11-11 17… "&lt;a h… Toda…
+2  7.96e17                    NA                  NA 2016-11-08 15… "&lt;a h… Toda…
+3  7.94e17                    NA                  NA 2016-11-03 23… "&lt;a h… It's…
+4  7.94e17                    NA                  NA 2016-11-03 06… "&lt;a h… It h…
+5  7.90e17                    NA                  NA 2016-10-23 17… "&lt;a h… I'll…
+6  7.90e17                    NA                  NA 2016-10-21 22… "&lt;a h… Chec…
+# ℹ 4 more variables: retweeted_status_id &lt;dbl&gt;,
+#   retweeted_status_user_id &lt;dbl&gt;, retweeted_status_timestamp &lt;chr&gt;,
+#   expanded_urls &lt;chr&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>tweets_table <span class="ot">&lt;-</span> tweets <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">created_at =</span> timestamp,                       </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">has_link =</span> <span class="sc">!</span><span class="fu">is.na</span>(expanded_urls),               </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">gov_link =</span> <span class="fu">str_detect</span>(expanded_urls, <span class="st">"</span><span class="sc">\\</span><span class="st">.gov"</span>)   </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(created_at, text, has_link, gov_link)       </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tweets_table, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 4
+   created_at                text                              has_link gov_link
+   &lt;chr&gt;                     &lt;chr&gt;                             &lt;lgl&gt;    &lt;lgl&gt;   
+ 1 2016-11-11 17:28:48 +0000 Today, we honor those who honore… FALSE    NA      
+ 2 2016-11-08 15:57:29 +0000 Today, progress is on the ballot… FALSE    NA      
+ 3 2016-11-03 23:34:58 +0000 It's pretty simple: Find a plan,… TRUE     TRUE    
+ 4 2016-11-03 06:03:56 +0000 It happened: @Cubs win World Ser… FALSE    NA      
+ 5 2016-10-23 17:01:02 +0000 I'll say it: Holy Cow, @Cubs fan… FALSE    NA      
+ 6 2016-10-21 22:44:03 +0000 Check out my newest science advi… TRUE     FALSE   
+ 7 2016-10-21 00:42:54 +0000 RT @vj44: We lit the @WhiteHouse… TRUE     FALSE   
+ 8 2016-10-20 13:31:12 +0000 Outstanding 3 for 3 debate sweep… FALSE    NA      
+ 9 2016-10-17 19:26:31 +0000 For the loved ones we've lost an… TRUE     FALSE   
+10 2016-10-16 14:30:59 +0000 For a century, Planned Parenthoo… FALSE    NA      </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Final Table</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>tweets_table <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_tweets =</span> <span class="fu">n</span>(),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">with_links =</span> <span class="fu">sum</span>(has_link),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_with_links =</span> <span class="fu">mean</span>(has_link),</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_gov_of_links =</span> <span class="fu">mean</span>(gov_link[has_link], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+  total_tweets with_links pct_with_links pct_gov_of_links
+         &lt;int&gt;      &lt;int&gt;          &lt;dbl&gt;            &lt;dbl&gt;
+1          321        135          0.421            0.126</code></pre>
+</div>
+</div>
+<p>This table showcases the total number of tweets that Obama posted during his short Twitter tenure. The table highlights tweets that contained links, and further identifies the percentage of those links that directed users to government websites. We can see that there were a total of 321 tweets, 135 of which contained links (42%). Among those tweets, 12.5% included links to government websites.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>links_summary <span class="ot">&lt;-</span> tweets_table <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">with_links =</span> <span class="fu">sum</span>(has_link, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">with_gov_links =</span> <span class="fu">sum</span>(gov_link, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"type"</span>, <span class="at">values_to =</span> <span class="st">"count"</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(links_summary, <span class="fu">aes</span>(<span class="at">x =</span> type, <span class="at">y =</span> count, <span class="at">fill =</span> type)) <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Obama Tweets Containing .Gov and Non .Gov Links"</span>,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Tweets"</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"darkred"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tidygas_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Proj2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><a href="https://www.cnbc.com/2014/08/25/survey-us-gas-prices-down-4-cents-per-gallon.html">image source</a></p>
+<p>The graph above showcases that table data above. We can see the total amount of tweets that contained links, and the total amount that contained government links. As seen only a small percentage where gov links.</p>
 
 
 </main>  

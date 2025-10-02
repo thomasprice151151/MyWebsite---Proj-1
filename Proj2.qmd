@@ -1,0 +1,111 @@
+---
+title: "Analysis of Obama's Tweets"
+subtitle: "fill in later"
+description: |
+  Fill in Later 
+format: html
+about:
+ template: jolla
+ image: images/Obama.jpeg
+ image-shape: rectangle
+ image-width: 17em
+
+---
+
+```{r}
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(stringr)
+library(lubridate)
+library(ggrepel)
+
+obama <- read_csv("Obama_Tweets/tweets.csv")
+
+head(obama)
+```
+
+```{r}
+# Cleaning the data 
+#| warning: false
+#| message: false
+
+
+tweets <- obama |>
+  filter(!is.na(text))               
+  
+tweets_clean <- tweets |>
+  mutate(
+    text_lower = str_to_lower(text),                        
+    text_noline = str_replace_all(text_lower, "[\r\n]", " "),
+  )
+
+head(tweets)
+```
+
+```{r}
+#| warning: false
+#| message: false
+
+
+library(tidyverse)
+library(stringr)
+
+tweets_table <- tweets |>
+  mutate(
+    created_at = timestamp,                       
+    has_link = !is.na(expanded_urls),               
+    gov_link = str_detect(expanded_urls, "\\.gov")   
+  ) |>
+  select(created_at, text, has_link, gov_link)       
+
+head(tweets_table, 10)
+
+
+```
+
+```{r}
+#Final Table
+#| warning: false
+#| message: false
+
+
+tweets_table |>
+  summarise(
+    total_tweets = n(),
+    with_links = sum(has_link),
+    pct_with_links = mean(has_link),
+    pct_gov_of_links = mean(gov_link[has_link], na.rm = TRUE)
+  )
+```
+This table showcases the total number of tweets that Obama posted during his short Twitter tenure. The table highlights tweets that contained links, and further identifies the percentage of those links that directed users to government websites. We can see that there were a total of 321 tweets, 135 of which contained links (42%). Among those tweets, 12.5% included links to government websites.
+```{r}
+#| warning: false
+#| message: false
+
+
+library(lubridate)
+library(ggplot2)
+
+links_summary <- tweets_table |>
+  summarise(
+    with_links = sum(has_link, na.rm = TRUE),
+    with_gov_links = sum(gov_link, na.rm = TRUE)
+  ) |>
+  pivot_longer(cols = everything(), names_to = "type", values_to = "count")
+
+ggplot(links_summary, aes(x = type, y = count, fill = type)) +
+  geom_col(width = 0.5) +
+  labs(
+    title = "Obama Tweets Containing .Gov and Non .Gov Links",
+    x = NULL,
+    y = "Number of Tweets"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = c("steelblue", "darkred"))
+
+```
+
+The graph above showcases that table data above. We can see the total amount of tweets that contained links, and the total amount that contained government links. As seen only a small percentage where gov links. 
+

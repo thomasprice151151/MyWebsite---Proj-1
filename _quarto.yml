@@ -16,6 +16,9 @@ website:
             text: US Gas Prices
           - href: billboard_t100.qmd
             text: Billboard Top 100 
+          - href: Proj2.qmd
+            text: Analysis of Obama's Tweets 
+            
 
 format:
   html:
