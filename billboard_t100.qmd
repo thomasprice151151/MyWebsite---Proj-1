@@ -12,6 +12,7 @@ about:
  image-shape: rounded
  image-width: 17em
 ---
+
 [View Original Data Set Here](https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-08-26)
 
 ```{r}
@@ -45,6 +46,4 @@ ggplot(top10_artists, aes(x = reorder(artist, n), y = n)) +
 
 ```
 
-
 [image source](https://www.cnbc.com/2014/08/25/survey-us-gas-prices-down-4-cents-per-gallon.html)
-

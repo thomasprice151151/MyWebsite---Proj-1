@@ -35,7 +35,7 @@ Hi! My name is Thomas Price and I am a current Senior at Pitzer College. At Pitz
 \
 Being From San Francisco, I am a huge Giants fan, so if you support any LA team, kindly leave this website
 
-```{}
+```         
 ```
 
 ```{r}

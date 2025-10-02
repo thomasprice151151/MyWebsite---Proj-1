@@ -6,6 +6,4 @@ about:
   image: images/DV.jpeg
   image-shape: round
   image-width: 17em
-
 ---
-
