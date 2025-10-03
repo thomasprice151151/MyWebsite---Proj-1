@@ -2,8 +2,13 @@
 title: "US Gas Prices"
 subtitle: "Exploring US Gas Prices Over Time"
 description: |
-  Viewing US Gas Prices on a weekly basis over the last 35 years. Original Author: Jon Harmon, Data Science Learning Community. 
-format: html
+  Viewing US Gas Prices on a weekly basis over the last 35 years. 
+  
+  Refrence: “Gasoline and Diesel Fuel Update.” Eia.gov, 2025, www.eia.gov/petroleum/gasdiesel/. Accessed 3 Oct. 2025.
+format:
+  html:
+    css: style.css
+    code-fold: true
 about:
  template: jolla
  image: images/Gas.jpeg 

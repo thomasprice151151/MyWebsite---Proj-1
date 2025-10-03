@@ -4,8 +4,13 @@ subtitle: "Examining the top songs in the world between 1958 and 2025"
 description: |
  The chart showcases the top 10 artists who have had songs in the top 100 songs in the world. The chart shows the total number of songs those artists had in the Billboard top 100. 
  
- Original Auther: Jen Richmond (R-Ladies Sydney)
-format: html
+ Refrence: “Billboard Hot 100 Number Ones Database - Data and Statistical Services.” Princeton.edu, 2025, dss.princeton.edu/catalog/resource8613. Accessed 3 Oct. 2025.
+
+ Original Auther: Chris Dalla Riva
+format:
+  html:
+    css: style.css
+    code-fold: true
 about:
  template: jolla
  image: images/bb.jpeg 

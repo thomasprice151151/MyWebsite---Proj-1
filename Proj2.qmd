@@ -1,9 +1,14 @@
 ---
 title: "Analysis of Obama's Tweets"
-subtitle: "fill in later"
+subtitle: "Ananlyzing Obama's Tweets through the last two years of his presidency"
 description: |
-  Fill in Later 
-format: html
+  Obama was granted access to Twitter on May 18, 2015, roughly two years before he left office. Since then, Twitter has been used as a vehicle to disseminate information by elected officials at a rapidly growing rate. This analysis focuses on the content of his tweets, specifically examining which tweets contained links to government resources.
+  
+  Refrence: The data used in this analysis comes from the [National Archives](https://www.obamalibrary.gov/digital-research-room/archived-white-house-websites-and-social-media), which maintains a full record of Barack Obama’s tweets during his presidency. The dataset was downloaded as a CSV file and stored locally for analysis.
+format:
+  html:
+    css: style.css
+    code-fold: true
 about:
  template: jolla
  image: images/Obama.jpeg
@@ -21,30 +26,26 @@ library(stringr)
 library(lubridate)
 library(ggrepel)
 
+# Reading the data
 obama <- read_csv("Obama_Tweets/tweets.csv")
 
-head(obama)
-```
-
-```{r}
-# Cleaning the data 
-#| warning: false
-#| message: false
-
-
+# Cleaning data
 tweets <- obama |>
-  filter(!is.na(text))               
-  
-tweets_clean <- tweets |>
+  filter(!is.na(text)) |> 
   mutate(
-    text_lower = str_to_lower(text),                        
-    text_noline = str_replace_all(text_lower, "[\r\n]", " "),
+    text_lower = str_to_lower(text),
+    text_noline = str_replace_all(text_lower, "[\r\n]", " ")
   )
 
 head(tweets)
+
 ```
 
+The above graph is the data taken from the National Archives of Obama's tweets. He had a total of 325 tweets through is 2 year Twitter tenure. Moving forward, we will continue to clean the data to identify what the nature of his tweets where, specifically targeting those that had links in them. This specific table shows, the date of the tweet, the source, the text of the tweet, if it was re-tweeted, and any urls within the tweet. The cleaning function we did removes any rows where the tweet text is missing, and does some basic cleaning by making all the text lowercase and getting rid of any line breaks. 
+
 ```{r}
+# Identifying tweets that contain links and government links. 
+
 #| warning: false
 #| message: false
 
@@ -54,19 +55,18 @@ library(stringr)
 
 tweets_table <- tweets |>
   mutate(
-    created_at = timestamp,                       
-    has_link = !is.na(expanded_urls),               
-    gov_link = str_detect(expanded_urls, "\\.gov")   
-  ) |>
-  select(created_at, text, has_link, gov_link)       
+    created_at = timestamp,
+    has_link = !is.na(expanded_urls),
 
-head(tweets_table, 10)
+    gov_link = str_detect(expanded_urls, "(?<=https?://)[^\\s]*\\.gov"), has_http_in_text = str_detect(text, "https?://[^\\s]+")) |>
+     select(created_at, text, has_link, gov_link, has_http_in_text)
+
 
 
 ```
 
 ```{r}
-#Final Table
+#Creating a new table with those links 
 #| warning: false
 #| message: false
 
@@ -81,6 +81,7 @@ tweets_table |>
 ```
 This table showcases the total number of tweets that Obama posted during his short Twitter tenure. The table highlights tweets that contained links, and further identifies the percentage of those links that directed users to government websites. We can see that there were a total of 321 tweets, 135 of which contained links (42%). Among those tweets, 12.5% included links to government websites.
 ```{r}
+#Visualizing which tweets contained links vs Gov links
 #| warning: false
 #| message: false
 
@@ -107,5 +108,5 @@ ggplot(links_summary, aes(x = type, y = count, fill = type)) +
 
 ```
 
-The graph above showcases that table data above. We can see the total amount of tweets that contained links, and the total amount that contained government links. As seen only a small percentage where gov links. 
+The graph above showcases that table data above. We can see the total amount of tweets that contained links, and the total amount that contained government links. As seen only a small percentage where gov links. Given that Twitter is a relatively new medium to disseminate critical information, I would like to do further analysis to see if more recent officials have used it to push government resources. Ultimately comparing usage across different administrations. 
 

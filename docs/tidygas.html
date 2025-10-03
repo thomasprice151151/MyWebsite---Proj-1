@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Viewing US Gas Prices on a weekly basis over the last 35 years. Original Author: Jon Harmon, Data Science Learning Community.">
+<meta name="description" content="Viewing US Gas Prices on a weekly basis over the last 35 years.Refrence: “Gasoline and Diesel Fuel Update.” Eia.gov, 2025, www.eia.gov/petroleum/gasdiesel/. Accessed 3 Oct.&nbsp;2025.">
 
 <title>US Gas Prices – Thomas Price</title>
 <style>
@@ -102,6 +102,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -144,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="./Proj2.html">
- <span class="dropdown-text">Analysis of Obama’s Tweets</span></a>
+ <span class="dropdown-text">Analysis of Obama’s Tweets (Proj2)</span></a>
   </li>  
     </ul>
   </li>
@@ -171,7 +172,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div>
   <div class="description">
-    <p>Viewing US Gas Prices on a weekly basis over the last 35 years. Original Author: Jon Harmon, Data Science Learning Community.</p>
+    <p>Viewing US Gas Prices on a weekly basis over the last 35 years.</p>
+    <p>Refrence: “Gasoline and Diesel Fuel Update.” Eia.gov, 2025, www.eia.gov/petroleum/gasdiesel/. Accessed 3 Oct.&nbsp;2025.</p>
   </div>
 </div>
 <div class="quarto-title-meta">
@@ -179,6 +181,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header><main class="content" id="quarto-document-content">
 <p><a href="https://github.com/rfordatascience/tidytuesday/blob/main/data/2025/2025-07-01/readme.md">View the original TidyTuesday dataset</a></p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>weekly_gas_prices <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(</span>
@@ -195,6 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Price (USD per gallon)"</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
