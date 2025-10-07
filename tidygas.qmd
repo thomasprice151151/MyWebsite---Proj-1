@@ -40,4 +40,4 @@ weekly_gas_prices |>
   theme_minimal()
 ```
 
-[image source](https://www.cnbc.com/2014/08/25/survey-us-gas-prices-down-4-cents-per-gallon.html)
+[image source: CNBC](https://www.cnbc.com/2014/08/25/survey-us-gas-prices-down-4-cents-per-gallon.html)

@@ -46,7 +46,7 @@
     "href": "billboard_t100.html",
     "title": "Billboard Hot 100 Number Ones",
     "section": "",
-    "text": "View Original Data Set Here\n\n\nCode\nlibrary(tidyverse)\n\nbillboard &lt;- readr::read_csv(\n  \"https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-08-26/billboard.csv\"\n)\n\nartist_counts &lt;- billboard |&gt;\n  group_by(artist) |&gt;\n  summarise(n = n()) |&gt;\n  arrange(desc(n))\n\ntop10_artists &lt;- head(artist_counts, 10)\n\n\nggplot(top10_artists, aes(x = reorder(artist, n), y = n)) +\n  geom_col(fill = \"steelblue\") +\n  geom_text(aes(label = n), hjust = 1.2, color = \"white\", size = 4) +\n  coord_flip() +   # flips so artists are readable\n  labs(\n    title = \"Top 10 Artists by Number of Hot 100 Songs\",\n    x = \"Artist\",\n    y = \"Number of Songs\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\nimage source"
+    "text": "View Original Data Set Here\n\n\nCode\nlibrary(tidyverse)\n\nbillboard &lt;- readr::read_csv(\n  \"https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-08-26/billboard.csv\"\n)\n\nartist_counts &lt;- billboard |&gt;\n  group_by(artist) |&gt;\n  summarise(n = n()) |&gt;\n  arrange(desc(n))\n\ntop10_artists &lt;- head(artist_counts, 10)\n\n\nggplot(top10_artists, aes(x = reorder(artist, n), y = n)) +\n  geom_col(fill = \"steelblue\") +\n  geom_text(aes(label = n), hjust = 1.2, color = \"white\", size = 4) +\n  coord_flip() +   # flips so artists are readable\n  labs(\n    title = \"Top 10 Artists by Number of Hot 100 Songs\",\n    x = \"Artist\",\n    y = \"Number of Songs\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\nimage source: Wikipedia"
   },
   {
     "objectID": "index.html",
@@ -60,6 +60,6 @@
     "href": "tidygas.html",
     "title": "US Gas Prices",
     "section": "",
-    "text": "View the original TidyTuesday dataset\n\n\nCode\nlibrary(tidyverse)\n\nweekly_gas_prices &lt;- readr::read_csv(\n  \"https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-07-01/weekly_gas_prices.csv\",\n  show_col_types = FALSE\n)\n\nweekly_gas_prices |&gt;\n  ggplot(aes(x = date, y = price)) +\n  geom_line(color = \"steelblue\") +\n  labs(\n    title = \"Weekly U.S. Gas Prices (1990–2025)\",\n    x = \"Date\",\n    y = \"Price (USD per gallon)\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\nimage source"
+    "text": "View the original TidyTuesday dataset\n\n\nCode\nlibrary(tidyverse)\n\nweekly_gas_prices &lt;- readr::read_csv(\n  \"https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-07-01/weekly_gas_prices.csv\",\n  show_col_types = FALSE\n)\n\nweekly_gas_prices |&gt;\n  ggplot(aes(x = date, y = price)) +\n  geom_line(color = \"steelblue\") +\n  labs(\n    title = \"Weekly U.S. Gas Prices (1990–2025)\",\n    x = \"Date\",\n    y = \"Price (USD per gallon)\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\nimage source: CNBC"
   }
 ]
