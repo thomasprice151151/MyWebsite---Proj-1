@@ -6,7 +6,7 @@ description: |
  
  Refrence: “Billboard Hot 100 Number Ones Database - Data and Statistical Services.” Princeton.edu, 2025, dss.princeton.edu/catalog/resource8613. Accessed 3 Oct. 2025.
 
- Original Auther: Chris Dalla Riva
+ Original Author: Chris Dalla Riva
 format:
   html:
     css: style.css
