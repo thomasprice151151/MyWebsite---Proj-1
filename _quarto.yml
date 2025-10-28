@@ -1,7 +1,8 @@
 project:
   type: website
   output-dir: docs
-
+#| warning: false
+#| message: false
 website:
   title: "Thomas Price"
   navbar:
@@ -18,6 +19,9 @@ website:
             text: Billboard Top 100 
           - href: Proj2.qmd
             text: Analysis of Obama's Tweets (Proj2)
+          - href: simulation.qmd
+            text: Permutation Test (Proj3)
+        
             
 
 format:

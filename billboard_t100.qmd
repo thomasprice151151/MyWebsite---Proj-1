@@ -16,6 +16,9 @@ about:
  image: images/bb.jpeg 
  image-shape: rounded
  image-width: 17em
+execute:
+  warning: false
+  message: false 
 ---
 
 [View Original Data Set Here](https://github.com/rfordatascience/tidytuesday/tree/main/data/2025/2025-08-26)
