@@ -14,9 +14,8 @@ description: |
  The Alternative Hypothesis would be: Countries with higher life expectancy tend to have systematically higher (or lower) GDP per capita. In other words, the relationship is real, not random.
  - Countries with deviations in life expetency, whether possitive or negative tend to have systematically differnt GDP levels. The slope is meaningfully different from zero
  
- This study will use the slope of this comparison as the test statistic. The slope in this case measures, direction of association. Meaning if the slope is positive that should entail higher life expectancy and higher GDP. The steeper the slope, the stronger the link. 
- Under the null hypothesis, when life expectancy variables are shuffled randomly among countries, the slope should average around zero.
-  If the observed slope is far from this null distribution, the relationship is unlikely due to chance.
+ This study will use the slope of this comparison as the test statistic. The slope in this case measures the direction of association, meaning if the slope is positive, that should indicate higher life expectancy and higher GDP. The steeper the slope, the stronger the link. Under the null hypothesis, when life expectancy values are shuffled randomly among countries, the slope should average around zero. If the observed slope is far from this null distribution, the relationship is unlikely due to chance.
+
  
  Refrence: The data used in this analysis comes from the [Gapminder Foundation](https://www.gapminder.org/data/), which is a independent education non-profit that aggreigates large data sets drawing from the UN, World Bank and other large international institutions. 
  
@@ -59,8 +58,21 @@ ggplot(gap2007, aes(x = lifeExp, y = gdpPercap, color = continent)) +
   ) +
   theme_minimal()
 
+ggplot(gap2007, aes(x = lifeExp, y = gdpPercap, color = continent)) +
+  geom_point(size = 2, alpha = 0.8) +
+  geom_smooth(method = "lm", se = FALSE) + 
+  labs(
+    title = "Life Expectancy vs GDP per Capita (2007)",
+    subtitle = "Each point represents a country",
+    x = "Life Expectancy (years)",
+    y = "GDP per Capita (US dollars)"
+  ) +
+  facet_wrap(~continent) + 
+  theme_minimal()
 ```
 The scatter plot shows the observed relationship between life expectancy and GDP per capita across countries in 2007. Their is a general upward trend where countries with longer life expectancy tend to have higher incomes. Additionally, their is noticeable variation within continents. Some countries achieve high life expectancy despite modest GDP per capita, and others show the opposite.This graph warrants testing whether the relationship is strong enough to be considered statistically meaningful. 
+
+This faceted graph shows the relationship between life expectancy and GDP per capita in 2007, separated by continent. Each point represents a country, and the line within each panel indicates the general direction of the relationship. Overall, continents like Europe and Asia show a strong positive correlation, while Africa and Oceania display weaker associations between life expectancy and GDP per capita.
 
 ```{r}
 #Identifying the LifeExp slope with a linear model
@@ -69,8 +81,6 @@ get_slope <- function(df) {
   fit <- lm(gdpPercap ~ lifeExp, data = df)
   coef(fit)[["lifeExp"]]  
 }
-
-
 
 ```
 
@@ -115,9 +125,9 @@ Larger positive slopes signify a steeper income to health relationship.
 # Permutation Test : Null Distribution
 perm_null <- function(rep, data){
   data |>
+    group_by(continent) |>
     select(continent, lifeExp, gdpPercap) |>
     mutate(lifeExp_perm = sample(lifeExp, replace = FALSE)) |>
-    group_by(continent) |>
     summarize(
       obs_slope  = coef(lm(gdpPercap ~ lifeExp      ))[2],
       perm_slope = coef(lm(gdpPercap ~ lifeExp_perm ))[2],
@@ -143,8 +153,9 @@ To simulate the null hypothesis that life expectancy and GDP per capita are unre
 pvals_tbl <- null_by_cont_tbl |>
   group_by(continent) |>
   summarize(
-    obs_slope = first(obs_slope), 
-    p_value = mean(abs(perm_slope) >= abs(obs_slope))
+    #obs_slope = first(obs_slope), 
+    #p_value = mean(abs(perm_slope) >= abs(obs_slope))
+    p_value = mean(perm_slope >= obs_slope)
   )
 
 pvals_tbl
@@ -163,11 +174,11 @@ ggplot() +
     data = null_by_cont_tbl,
     aes(x = perm_slope),
     bins = 40, fill = "lightblue", color = "white"
-  ) +
+  ) +  
   geom_vline(
     data = obs_slopes,
     aes(xintercept = obs_slope),
-    color = "red", linewidth = 1.2
+    color = "red", linewidth = .8
   ) +
   facet_wrap(~ continent, scales = "free") +
   labs(
